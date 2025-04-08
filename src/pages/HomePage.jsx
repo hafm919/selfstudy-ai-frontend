@@ -1,21 +1,23 @@
 import { Link } from "react-router-dom";
+import "./HomePage.css";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-green p-8 text-dark">
-      <h1 className="text-3xl font-bold mb-4">Learning Roadmap</h1>
-      <div className="grid gap-4 md:grid-cols-2">
-        <div className="bg-white p-4 rounded shadow">
-          <h2 className="text-xl font-semibold mb-2">Theory</h2>
-          <p className="text-sm mb-2">Study notes, key concepts, mind maps.</p>
-          <button className="bg-dark text-white px-4 py-1 rounded">Start Theory</button>
+    <div className="home">
+      <h1>Learning Roadmap</h1>
+      <div className="cards">
+        <div className="card">
+          <h2>Theory</h2>
+          <p>Study notes, mind maps</p>
+          <button>Start Theory</button>
         </div>
-        <div className="bg-white p-4 rounded shadow">
-          <h2 className="text-xl font-semibold mb-2">Practice</h2>
-          <p className="text-sm mb-2">AI-generated flashcards & repetition.</p>
-          <button className="bg-dark text-white px-4 py-1 rounded">Start Practice</button>
+        <div className="card">
+          <h2>Practice</h2>
+          <p>Flashcards & revision</p>
+          <button>Start Practice</button>
         </div>
       </div>
+      <Link to="/dashboard"><button className="to-dashboard">Go to Dashboard</button></Link>
     </div>
   );
 }

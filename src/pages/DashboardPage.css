@@ -1,0 +1,28 @@
+.dashboard {
+    padding: 2rem;
+  }
+  
+  .dashboard h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  
+  .box {
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+    width: 250px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .box h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  
