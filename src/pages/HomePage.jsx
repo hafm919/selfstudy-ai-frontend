@@ -1,20 +1,19 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../pages/Sidebar";
 
 export default function HomePage() {
   const navigate = useNavigate();
+  const fileInputRef = useRef();
 
-  // SUBJECTS (Folders)
   const [subjects, setSubjects] = useState(["Parallel Computing"]);
   const [subject, setSubject] = useState("Parallel Computing");
 
-  // CHAPTERS PER SUBJECT
   const [chapters, setChapters] = useState({
     "Parallel Computing": [],
   });
 
-  // Add new subject
+  // Add or switch subject
   const handleSelect = (name) => {
     if (!subjects.includes(name)) {
       setSubjects([...subjects, name]);
@@ -23,15 +22,25 @@ export default function HomePage() {
     setSubject(name);
   };
 
-  // Simulate upload
-  const handleUpload = () => {
-    const chapterName = prompt("Enter chapter title:");
-    if (!chapterName) return;
+  // Trigger file input
+  const handleUploadClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  // Handle PDF upload
+  const handleFileUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (!file || file.type !== "application/pdf") return;
+
+    const chapterTitle = file.name.replace(".pdf", "");
 
     setChapters((prev) => ({
       ...prev,
-      [subject]: [...(prev[subject] || []), chapterName],
+      [subject]: [...(prev[subject] || []), { title: chapterTitle, file }],
     }));
+
+    // reset input
+    e.target.value = "";
   };
 
   return (
@@ -41,15 +50,24 @@ export default function HomePage() {
       <div className="flex-1 p-10">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-semibold">{subject}</h2>
-          <button
-            onClick={handleUpload}
-            className="bg-[#a78bfa] text-white px-4 py-2 rounded hover:opacity-90"
-          >
-            Upload Chapter
-          </button>
+          <div>
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleFileUpload}
+              accept="application/pdf"
+              className="hidden"
+            />
+            <button
+              onClick={handleUploadClick}
+              className="bg-[#a78bfa] text-white px-4 py-2 rounded hover:opacity-90"
+            >
+              Upload Chapter
+            </button>
+          </div>
         </div>
 
-        {/* Upload prompt OR list of chapters */}
+        {/* Upload Prompt or Chapter Cards */}
         {!chapters[subject]?.length ? (
           <div className="border-2 border-dotted border-[#a78bfa] rounded-lg h-64 flex flex-col items-center justify-center">
             <span className="text-4xl text-[#a78bfa] mb-2">📄</span>
@@ -66,13 +84,13 @@ export default function HomePage() {
                 onClick={() =>
                   navigate(
                     `/notes?chapter=${encodeURIComponent(
-                      ch
+                      ch.title
                     )}&subject=${encodeURIComponent(subject)}`
                   )
                 }
               >
                 <h3 className="text-lg font-semibold">Chapter {idx + 1}</h3>
-                <p className="text-sm text-gray-600">{ch}</p>
+                <p className="text-sm text-gray-600">{ch.title}</p>
               </div>
             ))}
           </div>
