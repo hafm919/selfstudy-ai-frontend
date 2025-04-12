@@ -78,21 +78,38 @@ export default function HomePage() {
         ) : (
           <div className="grid md:grid-cols-2 gap-6">
             {chapters[subject].map((ch, idx) => (
-              <div
+            <div
                 key={idx}
-                className="border-2 border-[#a78bfa] p-6 rounded-md hover:bg-[#f3f1fc] cursor-pointer"
+                className="border-2 border-[#a78bfa] p-6 rounded-md hover:bg-[#f3f1fc] cursor-pointer space-y-2"
+            >
+                <div
                 onClick={() =>
-                  navigate(
+                    navigate(
                     `/notes?chapter=${encodeURIComponent(
-                      ch.title
+                        ch.title
                     )}&subject=${encodeURIComponent(subject)}`
-                  )
+                    )
                 }
-              >
+                >
                 <h3 className="text-lg font-semibold">Chapter {idx + 1}</h3>
                 <p className="text-sm text-gray-600">{ch.title}</p>
-              </div>
+                </div>
+
+                <button
+                onClick={() =>
+                    navigate(
+                    `/schedule?chapter=${encodeURIComponent(
+                        ch.title
+                    )}&subject=${encodeURIComponent(subject)}`
+                    )
+                }
+                className="text-sm text-[#a78bfa] underline"
+                >
+                📅 Schedule Repetition
+                </button>
+            </div>
             ))}
+
           </div>
         )}
       </div>

@@ -8,6 +8,8 @@ import NotesPage from "./pages/NotesPage";
 import FlashcardsPage from "./pages/FlashcardsPage";
 import RepetitionPage from "./pages/RepetitionPage";
 import MindMapPage from "./pages/MindMapPage";
+import SchedulePage from "./pages/SchedulePage";
+import RepetitionCalendar from "./pages/RepetitionCalendar";
 import StudyPlannerPage from "./pages/StudyPlannerPage";
 import DashboardPage from "./pages/DashboardPage";
 import GuestPreviewPage from "./pages/GuestPreviewPage";
@@ -26,6 +28,8 @@ function App() {
         <Route path="/flashcards" element={<FlashcardsPage />} />
         <Route path="/review" element={<RepetitionPage />} />
         <Route path="/mindmap" element={<MindMapPage />} />
+        <Route path="/schedule" element={<SchedulePage />} />
+        <Route path="/calendar" element={<RepetitionCalendar />} />
         <Route path="/planner" element={<StudyPlannerPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/preview" element={<GuestPreviewPage />} />

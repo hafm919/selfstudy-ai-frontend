@@ -1,6 +1,13 @@
 /* src/index.css */
 @import "tailwindcss";
 
+html, body, #root {
+  height: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden; /* removes scroll */
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,6 +15,7 @@
 }
 
 body {
+  margin: 0 !important;
   font-family: 'Segoe UI', sans-serif;
   background-color: #f9f6f0;
   color: #001d3d;
