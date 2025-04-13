@@ -1,12 +1,39 @@
-# React + Vite
+# 🎨 StudyMate AI – Frontend Style Guide
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Keep this file updated to ensure design consistency across all pages.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🧱 Layout & Structure
 
-## Expanding the ESLint configuration
+- Responsive grid/flex-based layout
+- Centralized splash and auth views (`min-h-screen flex items-center justify-center`)
+- Soft rounded corners: `rounded-md`, `rounded-lg`
+- Shadows for depth: `shadow-md`, `hover:shadow-lg`
+- Subtle animations on buttons: `transition`, `hover:scale-105`
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🎨 Color Palette
+
+| Use               | Hex Code     | Tailwind Name |
+|------------------|--------------|---------------|
+| Background        | `#f9f6f0`    | `beige`       |
+| Primary Accent    | `#a78bfa`    | `lavender`    |
+| Dark Text         | `#001d3d`    | `dark`        |
+| Secondary Text    | `#5b4a89`    | `indigo-500`  |
+| Button Hover Fill | `#f3f0ff`    | `light-lavender` |
+
+---
+
+## 🅰️ Typography
+
+| Element  | Font            | Weight/Style   |
+|----------|------------------|----------------|
+| Headings | `Space Grotesk`  | Bold, expressive |
+| Body     | `Inter`          | Neutral, readable |
+| Buttons  | `Manrope`        | Semi-bold, sharp |
+
+> Installed via:
+```bash
+npm install @fontsource/space-grotesk @fontsource/inter @fontsource/manrope
