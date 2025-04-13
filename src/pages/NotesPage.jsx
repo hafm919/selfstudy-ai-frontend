@@ -48,44 +48,24 @@ export default function NotesPage() {
           </ol>
         </div>
 
-        <div className="mt-10 flex justify-center">
+        <div className="mt-10 flex justify-center gap-4">
           <button
             onClick={() =>
               navigate(`/flashcards?chapter=${encodeURIComponent(chapter)}&subject=${encodeURIComponent(subject)}`)
             }
             className="bg-[#a78bfa] text-white font-semibold px-6 py-3 rounded-md hover:opacity-90 transition flex items-center gap-2"
           >
-            🚀 Launch Flashcard Session
+            🚀 Flashcards
           </button>
-        </div>
 
-        <div className="mt-6 flex justify-center gap-4">
-            <button
-                onClick={() =>
-                navigate(`/flashcards?chapter=${encodeURIComponent(chapter)}&subject=${encodeURIComponent(subject)}`)
-                }
-                className="bg-[#a78bfa] text-white font-semibold px-6 py-3 rounded-md hover:opacity-90 transition"
-            >
-                🚀 Flashcards
-            </button>
-
-            <button
-                onClick={() =>
-                navigate(`/mindmap?chapter=${encodeURIComponent(chapter)}&subject=${encodeURIComponent(subject)}`)
-                }
-                className="bg-white text-[#a78bfa] border-2 border-[#a78bfa] font-semibold px-6 py-3 rounded-md hover:bg-[#f3f1fc] transition"
-            >
-                🧠 Mind Map
-            </button>
-
-            <button
-                onClick={() =>
-                navigate(`/review?chapter=${encodeURIComponent(chapter)}&subject=${encodeURIComponent(subject)}`)
-                }
-                className="bg-white text-[#a78bfa] border-2 border-[#a78bfa] font-semibold px-6 py-3 rounded-md hover:bg-[#f3f1fc] transition"
-            >
-                ⏳ Review Now
-            </button>
+          <button
+            onClick={() =>
+              navigate(`/mindmap?chapter=${encodeURIComponent(chapter)}&subject=${encodeURIComponent(subject)}`)
+            }
+            className="bg-white text-[#a78bfa] border-2 border-[#a78bfa] font-semibold px-6 py-3 rounded-md hover:bg-[#f3f1fc] transition flex items-center gap-2"
+          >
+            🧠 Mind Map
+          </button>
         </div>
       </div>
     </div>

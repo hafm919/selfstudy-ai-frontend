@@ -1,32 +1,27 @@
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
-import Sidebar from "../pages/Sidebar";
+import Sidebar from "./Sidebar";
 
 export default function FlashcardsPage() {
-  const params = new URLSearchParams(useLocation().search);
-  const chapter = params.get("chapter") || "Chapter 1";
-  const subject = params.get("subject") || "Parallel Computing";
+  const location = useLocation();
+  const navigate = useNavigate();
+  const params = new URLSearchParams(location.search);
+  const chapter = params.get("chapter") || "Unknown Chapter";
+  const subject = params.get("subject") || "Unknown Subject";
 
   const [subjects] = useState(["Parallel Computing", "Deep learning", "Engineering Finances"]);
 
-  // Mock flashcards: you’ll replace this with AI-generated ones later
   const [cards] = useState([
-    {
-      id: 1,
-      question: "What are the 4 types of parallelism?",
-      answer: "Bit-level, Instruction-level, Data-level, Task-level",
-    },
-    {
-      id: 2,
-      question: "Why use parallel computing?",
-      answer: "To increase computational speed and efficiency.",
-    },
+    { q: "What are the 4 types of parallelism?", a: "Bit-level, Instruction-level, Data, Task" },
+    { q: "Why use parallel computing?", a: "Faster execution, better utilization, scalability" },
   ]);
 
-  const [flipped, setFlipped] = useState({});
+  const [flipped, setFlipped] = useState(Array(cards.length).fill(false));
 
-  const toggleFlip = (id) => {
-    setFlipped((prev) => ({ ...prev, [id]: !prev[id] }));
+  const toggleCard = (index) => {
+    const copy = [...flipped];
+    copy[index] = !copy[index];
+    setFlipped(copy);
   };
 
   return (
@@ -34,25 +29,38 @@ export default function FlashcardsPage() {
       <Sidebar subjects={subjects} current={subject} onSelect={() => {}} />
 
       <div className="flex-1 p-10 text-[#001d3d]">
-        <h2 className="text-3xl font-bold mb-4">Flashcards</h2>
-        <p className="text-sm text-gray-500 mb-6">
+        <h2 className="text-3xl font-bold mb-1">Flashcards</h2>
+        <p className="text-sm text-gray-500 mb-4">
           {subject} &gt; {chapter}
         </p>
 
-        <div className="grid gap-6">
-          {cards.map((card) => (
+        {/* 🔙 Back to Notes Button */}
+        <div className="mb-6">
+          <button
+            onClick={() =>
+              navigate(`/notes?chapter=${encodeURIComponent(chapter)}&subject=${encodeURIComponent(subject)}`)
+            }
+            className="text-[#a78bfa] underline font-medium hover:text-[#7e63db] transition"
+          >
+            ← Back to Notes
+          </button>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+          {cards.map((card, i) => (
             <div
-              key={card.id}
-              className="bg-[#a78bfa] text-white p-8 rounded-lg shadow-md cursor-pointer relative"
-              onClick={() => toggleFlip(card.id)}
+              key={i}
+              className="w-full h-48 bg-white rounded-xl shadow-md perspective cursor-pointer"
+              onClick={() => toggleCard(i)}
             >
-              <div className="absolute top-2 right-4 text-sm italic opacity-70">
-                {flipped[card.id] ? "Answer" : "Question"}
+              <div className={`relative w-full h-full transition-transform duration-500 transform-style-preserve-3d ${flipped[i] ? "rotate-y-180" : ""}`}>
+                <div className="absolute inset-0 bg-[#a78bfa] text-white rounded-xl flex items-center justify-center px-4 text-lg font-medium backface-hidden">
+                  <p>{card.q}</p>
+                </div>
+                <div className="absolute inset-0 bg-white text-[#001d3d] rounded-xl flex items-center justify-center px-4 text-md font-semibold rotate-y-180 backface-hidden">
+                  <p>{card.a}</p>
+                </div>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Flashcard {card.id}</h3>
-              <p className="text-lg">
-                {flipped[card.id] ? card.answer : card.question}
-              </p>
             </div>
           ))}
         </div>
