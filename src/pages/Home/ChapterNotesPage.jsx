@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 
-export default function NotesPage() {
+export default function NotesPage({ onSelect }) {
   const location = useLocation();
   const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
@@ -10,7 +10,6 @@ export default function NotesPage() {
   let chapter = params.get("chapter") || "Unknown Chapter";
   let subject = params.get("subject") || "Unknown Subject";
   let chapterId = params.get("chapterId") || "";
-  console.log("chapterId:", chapterId);
   let subjectId = params.get("subjectId") || "";
   const [notes, setNotes] = useState("");
   const [loading, setLoading] = useState(true);
@@ -54,6 +53,15 @@ export default function NotesPage() {
           {subject} &gt; {chapter}
         </p>
 
+        <div className="mb-6">
+          <button
+            onClick={() => onSelect(subject, subjectId, "subject")}
+            className="text-[#a78bfa] underline font-medium hover:text-[#7e63db] transition cursor-pointer"
+          >
+            ← Back to Chapters
+          </button>
+        </div>
+
         <div className="bg-white p-6 rounded-md shadow space-y-4">
           <div className=" prose">
             <ReactMarkdown>{notes}</ReactMarkdown>
@@ -62,13 +70,7 @@ export default function NotesPage() {
 
         <div className="mt-10 flex justify-center gap-4">
           <button
-            onClick={() =>
-              navigate(
-                `/flashcards?chapter=${encodeURIComponent(
-                  chapter
-                )}&subject=${encodeURIComponent(subject)}`
-              )
-            }
+            onClick={() => onSelect(subject, subjectId, "flashcards")}
             className="bg-[#a78bfa] text-white font-semibold px-6 py-3 rounded-md hover:opacity-90 transition flex items-center gap-2"
           >
             🚀 Flashcards

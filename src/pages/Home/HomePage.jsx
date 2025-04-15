@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import SubjectsPage from "./SubjectsPage";
 import ChapterNotesPage from "./ChapterNotesPage";
+import FlashcardsPage from "./ChapterFlashcardsPage";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -46,8 +47,10 @@ export default function HomePage() {
       );
       break;
     case "notes":
-      content = <ChapterNotesPage></ChapterNotesPage>;
+      content = <ChapterNotesPage onSelect={handleSelect}></ChapterNotesPage>;
       break;
+    case "flashcards":
+      content = <FlashcardsPage onSelect={handleSelect}></FlashcardsPage>;
   }
 
   return (

@@ -104,7 +104,7 @@ export default function Sidebar({
           <button
             key={subj.id}
             onClick={() => handleClick(subj.name, subj.id)}
-            className={`w-full text-left flex items-center gap-2 px-3 py-2 rounded-md mb-1 border ${
+            className={`w-full text-left flex items-center gap-2 px-3 py-2 rounded-md mb-1 border cursor-pointer ${
               subj.name === current
                 ? "bg-[#a78bfa] text-white"
                 : "bg-white hover:bg-gray-100"
@@ -126,7 +126,7 @@ export default function Sidebar({
             />
             <button
               onClick={addSubject}
-              className="text-sm text-[#a78bfa] font-bold"
+              className="text-sm text-[#a78bfa] font-bold cursor-pointer"
             >
               Add
             </button>
@@ -134,7 +134,7 @@ export default function Sidebar({
         ) : (
           <button
             onClick={() => setShowInput(true)}
-            className="text-sm text-[#a78bfa] flex items-center gap-1 mt-2"
+            className="text-sm text-[#a78bfa] flex items-center gap-1 mt-2 cursor-pointer"
           >
             <FaPlus /> Add Subject
           </button>
