@@ -1,27 +1,31 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Sidebar from "../pages/Home/Sidebar";
 import ReactMarkdown from "react-markdown";
 
 export default function NotesPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
-  const chapter = params.get("chapter") || "Unknown Chapter";
-  const subject = params.get("subject") || "Unknown Subject";
-  const chapterId = params.get("chapterId") || "Unknown Chapter";
-  const subjectId = params.get("subjectId") || "Unknown Subject";
+  console.log("Search string:", location.search);
+  let chapter = params.get("chapter") || "Unknown Chapter";
+  let subject = params.get("subject") || "Unknown Subject";
+  let chapterId = params.get("chapterId") || "";
+  console.log("chapterId:", chapterId);
+  let subjectId = params.get("subjectId") || "";
   const [notes, setNotes] = useState("");
   const [loading, setLoading] = useState(true);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     const fetchNotes = async () => {
       try {
         const res = await fetch(
-          "http://localhost:3000/api/subjects/704395e4-62f9-4c79-b68c-9288e39f76e2/chapter/892bf1b3-8f8f-49b9-bd36-a1486ea3b9d9/notes",
+          `${
+            import.meta.env.VITE_API_URL
+          }/subjects/${subjectId}/chapter/${chapterId}/notes`,
           {
             headers: {
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3YjUyZjRhLTQwOWYtNDJhNy04ZjEzLTkwZTkwMmFiNzJkOCIsImVtYWlsIjoiaGFmbTkxOUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRkQzk1NDRpYk0yNmRpL3lYOHUuWTJPMTc5VG9yYnBHUHd2LlpEdm5hVXFuLkJyTXJGL1QxYSIsIm5hbWUiOiJIYWZlZXogTW9oYW1tZWQiLCJpYXQiOjE3NDQ2MjUwMDJ9.E_m45AVdkB_Wt7WP8wWwoa4PcHxlEQPEgs7uoS_l1AM`,
+              Authorization: `Bearer ${token}`,
             },
           }
         );
@@ -38,7 +42,7 @@ export default function NotesPage() {
     };
 
     fetchNotes();
-  }, []);
+  }, [subjectId, chapterId]);
 
   if (loading) return <p>Loading...</p>;
 

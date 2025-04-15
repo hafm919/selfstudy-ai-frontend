@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Sidebar from "../pages/Sidebar";
+import Sidebar from "./Home/Sidebar-copy";
 
 export default function SchedulePage() {
   const navigate = useNavigate();
@@ -10,7 +10,11 @@ export default function SchedulePage() {
 
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [subjects] = useState(["Parallel Computing", "Deep learning", "Engineering Finances"]);
+  const [subjects] = useState([
+    "Parallel Computing",
+    "Deep learning",
+    "Engineering Finances",
+  ]);
 
   const handleSubmit = () => {
     if (!startDate || !endDate || new Date(startDate) > new Date(endDate)) {
@@ -20,7 +24,9 @@ export default function SchedulePage() {
 
     // Temporary: send to calendar page with schedule data in URL (for now)
     navigate(
-      `/calendar?subject=${encodeURIComponent(subject)}&chapter=${encodeURIComponent(
+      `/calendar?subject=${encodeURIComponent(
+        subject
+      )}&chapter=${encodeURIComponent(
         chapter
       )}&start=${startDate}&end=${endDate}`
     );

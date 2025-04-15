@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Sidebar from "../pages/Sidebar";
+import Sidebar from "./Home/Sidebar-copy";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
@@ -28,7 +28,11 @@ export default function RepetitionCalendar() {
   const start = params.get("start");
   const end = params.get("end");
 
-  const [subjects] = useState(["Parallel Computing", "Deep learning", "Engineering Finances"]);
+  const [subjects] = useState([
+    "Parallel Computing",
+    "Deep learning",
+    "Engineering Finances",
+  ]);
   const [schedule, setSchedule] = useState([]);
   const [completed, setCompleted] = useState(() => {
     const key = `${subject}_${chapter}_completed`;
@@ -77,7 +81,9 @@ export default function RepetitionCalendar() {
                 <button
                   onClick={() =>
                     navigate(
-                      `/notes?subject=${encodeURIComponent(subject)}&chapter=${encodeURIComponent(chapter)}`
+                      `/notes?subject=${encodeURIComponent(
+                        subject
+                      )}&chapter=${encodeURIComponent(chapter)}`
                     )
                   }
                   className="text-xs underline text-[#5b4a89] hover:opacity-80"
@@ -93,7 +99,9 @@ export default function RepetitionCalendar() {
                   </button>
                 )}
                 {isChecked(iso) && (
-                  <span className="text-xs text-green-600 mt-1 font-semibold">✅ Done</span>
+                  <span className="text-xs text-green-600 mt-1 font-semibold">
+                    ✅ Done
+                  </span>
                 )}
               </div>
             );
