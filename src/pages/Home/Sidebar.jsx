@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FaBook, FaPlus } from "react-icons/fa";
+import { FaBook, FaPlus, FaCalendarAlt } from "react-icons/fa";
 
 export default function Sidebar({
   current = "",
@@ -94,6 +94,15 @@ export default function Sidebar({
           SelfStudy
         </h1>
       </div>
+
+      {/*calendar button*/}
+      <button
+        onClick={() => onSelect(null, null, "calendar")}
+        className="w-full flex items-center justify-center gap-2 mt-6 px-4 py-2 rounded-md bg-gradient-to-r from-purple-600 to-purple-400 text-white font-semibold shadow hover:opacity-90 transition-all cursor-pointer"
+      >
+        <FaCalendarAlt className="text-lg" />
+        Calendar
+      </button>
 
       {/* Sidebar buttons */}
       <div className="flex flex-col mt-9 gap-2 h-full flex-grow">

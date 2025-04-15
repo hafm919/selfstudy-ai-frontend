@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import SubjectsPage from "./SubjectsPage";
-import ChapterNotesPage from "./ChapterNotesPage";
-import FlashcardsPage from "./ChapterFlashcardsPage";
+import ChapterNotesPage from "./Chapter/ChapterNotesPage";
+import FlashcardsPage from "./Chapter/ChapterFlashcardsPage";
+import ChapterMindMapPage from "./Chapter/ChapterMindMapPage";
+import RepetitionCalendar from "./Calendar/RepetitionCalendar";
+import SchedulePage from "./Calendar/SchedulePage";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -51,6 +54,19 @@ export default function HomePage() {
       break;
     case "flashcards":
       content = <FlashcardsPage onSelect={handleSelect}></FlashcardsPage>;
+      break;
+    case "mindmap":
+      content = (
+        <ChapterMindMapPage onSelect={handleSelect}></ChapterMindMapPage>
+      );
+      break;
+    case "calendar":
+      content = <RepetitionCalendar></RepetitionCalendar>;
+      break;
+
+    case "schedule":
+      content = <SchedulePage onSelect={handleSelect}></SchedulePage>;
+      break;
   }
 
   return (

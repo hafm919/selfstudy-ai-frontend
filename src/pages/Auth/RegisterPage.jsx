@@ -53,6 +53,7 @@ export default function RegisterPage() {
         navigate("/login");
       }, 1000);
     } catch (err) {
+      console.log(err);
       setError("Network error. Please try again.");
     }
   };

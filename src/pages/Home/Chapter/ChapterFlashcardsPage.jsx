@@ -1,10 +1,9 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Sidebar from "./Sidebar";
+import Sidebar from "../Sidebar";
 
 export default function FlashcardsPage({ onSelect }) {
   const location = useLocation();
-  const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
   const chapter = params.get("chapter") || "Unknown Chapter";
   const subject = params.get("subject") || "Unknown Subject";
@@ -57,10 +56,10 @@ export default function FlashcardsPage({ onSelect }) {
         </p>
 
         {/* 🔙 Back to Notes Button */}
-        <div className="mb-6">
+        <div className="mb-6 cursor-pointer">
           <button
             onClick={() => onSelect(subject, subjectId, "notes")}
-            className="text-[#a78bfa] underline font-medium hover:text-[#7e63db] transition"
+            className="text-[#a78bfa] underline font-medium hover:text-[#7e63db] transition cursor-pointer"
           >
             ← Back to Notes
           </button>

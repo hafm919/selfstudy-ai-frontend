@@ -144,7 +144,7 @@ export default function SubjectsPage({ subject, subjectId, onSelect }) {
               {chapters.map((ch, idx) => (
                 <div
                   key={ch.id}
-                  className="border-2 border-[#a78bfa] p-6 rounded-md hover:bg-[#f3f1fc] cursor-pointer space-y-2"
+                  className="border-2 border-[#a78bfa] p-6 rounded-md hover:bg-[#f3f1fc] cursor-pointer space-y-2 "
                 >
                   <div
                     onClick={() => {
@@ -163,14 +163,17 @@ export default function SubjectsPage({ subject, subjectId, onSelect }) {
                   </div>
 
                   <button
-                    onClick={() =>
+                    onClick={() => {
+                      onSelect(subject, subjectId, "schedule");
                       navigate(
-                        `/schedule?chapter=${encodeURIComponent(
+                        `/home?subject=${encodeURIComponent(
+                          subject
+                        )}&subjectId=${subjectId}&chapter=${encodeURIComponent(
                           ch.title
-                        )}&subject=${encodeURIComponent(subject)}`
-                      )
-                    }
-                    className="text-sm text-[#a78bfa] underline"
+                        )}&chapterId=${ch.id}`
+                      );
+                    }}
+                    className="text-sm text-[#a78bfa] underline cursor-pointer"
                   >
                     📅 Schedule Repetition
                   </button>

@@ -1,10 +1,9 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 
 export default function NotesPage({ onSelect }) {
   const location = useLocation();
-  const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
   console.log("Search string:", location.search);
   let chapter = params.get("chapter") || "Unknown Chapter";
@@ -70,21 +69,21 @@ export default function NotesPage({ onSelect }) {
 
         <div className="mt-10 flex justify-center gap-4">
           <button
-            onClick={() => onSelect(subject, subjectId, "flashcards")}
-            className="bg-[#a78bfa] text-white font-semibold px-6 py-3 rounded-md hover:opacity-90 transition flex items-center gap-2"
+            onClick={() => {
+              onSelect(subject, subjectId, "flashcards");
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className="bg-[#a78bfa] text-white font-semibold px-6 py-3 rounded-md hover:opacity-90 transition flex items-center gap-2 cursor-pointer"
           >
             🚀 Flashcards
           </button>
 
           <button
-            onClick={() =>
-              navigate(
-                `/mindmap?chapter=${encodeURIComponent(
-                  chapter
-                )}&subject=${encodeURIComponent(subject)}`
-              )
-            }
-            className="bg-white text-[#a78bfa] border-2 border-[#a78bfa] font-semibold px-6 py-3 rounded-md hover:bg-[#f3f1fc] transition flex items-center gap-2"
+            onClick={() => {
+              onSelect(subject, subjectId, "mindmap");
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className="bg-white text-[#a78bfa] border-2 border-[#a78bfa] font-semibold px-6 py-3 rounded-md hover:bg-[#f3f1fc] transition flex items-center gap-2 cursor-pointer"
           >
             🧠 Mind Map
           </button>
