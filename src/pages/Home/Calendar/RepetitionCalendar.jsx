@@ -44,7 +44,7 @@ export default function RepetitionCalendar() {
     };
 
     fetchCalendarData();
-  }, []);
+  }, [token]);
 
   const handleSelectEvent = (event) => {
     navigate(

@@ -151,7 +151,7 @@ export default function Sidebar({
 
         <button
           onClick={handleLogout}
-          className="bg-white text-left font-sans text-right text-black p-3 border border-black hover:bg-[#a78bfa] hover:text-white mt-auto cursor-pointer"
+          className="bg-white  font-sans text-right text-black p-3 border border-black hover:bg-[#a78bfa] hover:text-white mt-auto cursor-pointer"
         >
           Logout
         </button>
