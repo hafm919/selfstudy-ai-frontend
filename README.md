@@ -1,39 +1,45 @@
-# 🎨 StudyMate AI – Frontend Style Guide
+# SelfStudy AI
 
-Keep this file updated to ensure design consistency across all pages.
+**SelfStudy AI** is an intelligent learning companion that turns your study PDFs into structured notes, flashcards, mind maps, and personalized revision schedules using AI. It's designed to help students streamline their self-study process and retain information more effectively.
 
----
+![notes](readme/flashcards.png)
 
-## 🧱 Layout & Structure
+## 🚀 Features
 
-- Responsive grid/flex-based layout
-- Centralized splash and auth views (`min-h-screen flex items-center justify-center`)
-- Soft rounded corners: `rounded-md`, `rounded-lg`
-- Shadows for depth: `shadow-md`, `hover:shadow-lg`
-- Subtle animations on buttons: `transition`, `hover:scale-105`
-
----
-
-## 🎨 Color Palette
-
-| Use               | Hex Code     | Tailwind Name |
-|------------------|--------------|---------------|
-| Background        | `#f9f6f0`    | `beige`       |
-| Primary Accent    | `#a78bfa`    | `lavender`    |
-| Dark Text         | `#001d3d`    | `dark`        |
-| Secondary Text    | `#5b4a89`    | `indigo-500`  |
-| Button Hover Fill | `#f3f0ff`    | `light-lavender` |
+- 📄 **Smart PDF Parsing** – Upload a PDF and automatically extract chapters and headings.
+- 🧠 **AI-Generated Notes & Flashcards** – Get concise summaries and flashcards powered by the Gemini API.
+- 🗺️ **Interactive Mind Maps** – Visualize concepts and their relationships using dynamic D3-based mind maps.
+- 📆 **Repetition Calendar** – Plan revisions using spaced repetition principles and track progress.
 
 ---
 
-## 🅰️ Typography
+## 🛠️ Tech Stack
 
-| Element  | Font            | Weight/Style   |
-|----------|------------------|----------------|
-| Headings | `Space Grotesk`  | Bold, expressive |
-| Body     | `Inter`          | Neutral, readable |
-| Buttons  | `Manrope`        | Semi-bold, sharp |
+### Frontend
 
-> Installed via:
-```bash
-npm install @fontsource/space-grotesk @fontsource/inter @fontsource/manrope
+- **React** (with Vite)
+- **Tailwind CSS**
+- **React Big Calendar**
+- **React Flow** (for mind map visualizations)
+
+### Backend
+
+- **Node.js + Express**
+- **PostgreSQL** with **Prisma ORM**
+- **Gemini API** for AI summarization and flashcard generation
+
+### Other Tools
+
+- **JWT Authentication**
+
+---
+
+### Screenshots
+
+## ![notes](readme/notes.png)
+
+## ![notes](readme/flashcards.png)
+
+## ![notes](readme/mindmap.png)
+
+## ![notes](readme/calendar.png)

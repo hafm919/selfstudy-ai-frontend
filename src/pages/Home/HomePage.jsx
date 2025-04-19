@@ -61,7 +61,9 @@ export default function HomePage() {
       );
       break;
     case "calendar":
-      content = <RepetitionCalendar></RepetitionCalendar>;
+      content = (
+        <RepetitionCalendar onSelect={handleSelect}></RepetitionCalendar>
+      );
       break;
 
     case "schedule":

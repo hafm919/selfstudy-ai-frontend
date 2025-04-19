@@ -7,7 +7,7 @@ import moment from "moment";
 
 const localizer = momentLocalizer(moment);
 
-export default function RepetitionCalendar() {
+export default function RepetitionCalendar({ onSelect }) {
   const navigate = useNavigate();
   const [events, setEvents] = useState([]);
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -47,6 +47,7 @@ export default function RepetitionCalendar() {
   }, [token]);
 
   const handleSelectEvent = (event) => {
+    onSelect(event.subject, event.subjectId, "notes");
     navigate(
       `/home?subject=${encodeURIComponent(event.subject)}&subjectId=${
         event.subjectId
