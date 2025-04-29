@@ -18,7 +18,7 @@ export default function Sidebar({
     const fetchSubjects = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await fetch("http://localhost:3000/api/subjects", {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/subjects`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
